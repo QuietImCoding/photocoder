@@ -22,7 +22,7 @@ for y in range(0, height):
         if y == 0:
             numstr += str(ord(text[x])) + " "
         g = 255 - (normdist - ord(text[y]))
-        b = len(text)%255
+        b = 255 - normdist
         bigstr += "%s %s %s\n" % (r, g, b)
 
 bigstr = bigstr[:len(bigstr)-2]

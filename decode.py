@@ -7,7 +7,7 @@ im = Image.open(path)
 width = im.size[0]
 height = im.size[1]
 pix = im.load()
-print "Width: " + str(im.size[0]) + ", Height: " + str(im.size[1])
+#print "Width: " + str(im.size[0]) + ", Height: " + str(im.size[1])
 oy = height/2.0
 ox = width/2.0
 mdist = int(math.sqrt(((oy)**2 + (ox)**2)))
