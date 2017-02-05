@@ -25,7 +25,7 @@ def smallencode(text):
         for x in range(0, width):
             dist = int(math.sqrt(((oy-y)**2 + (ox-x)**2)))
             normdist = int(255 * dist / mdist)
-            r = 255 - (normdist - ord(text[x]))
+            r = ord(text[x])
             #if y == 0:
             #    numstr += str(ord(text[x])) + " "
             g = 255 - (normdist - ord(text[y]))
@@ -55,9 +55,9 @@ def bigencode(text):
         dist = int(math.sqrt(((oy-y)**2 + (ox-x)**2)))
         normdist = int(255 * dist / mdist)
         if i < len(text):
-            r = 255 - (normdist - ord(text[i]))
+            r = ord(text[i])
             g = 255 - (normdist - ord(text[x]))
-            b = max(r, g)
+            b = 255 - (normdist - ord(text[y]))
         else:
             r = 0
             g = 1
