@@ -23,13 +23,23 @@ def decode(big=False):
             y = int(i / height)
             dist = int(math.sqrt(((oy-y)**2 + (ox-x)**2)))
             normdist = int(255 * dist / mdist)
-            r = pix[x, y][0]
-            num = r #- 255 + normdist
+            
+            r = pix[x,y][0]
+            g = pix[x,y][1]
+            
+            if g < 128:
+                num = r - 255 + normdist
+                if num < 0:
+                    num = 255 + normdist - r
+            else:
+                num = 255 + normdist - r
+            
             if num >= 0 and num <= 255:
                 numlist.append(num)
             elif abs(num) <= 255:
                 failed = True
-                faillist.append(str(r) + ":" + str(normdist) + ":" + str(num))
+                faillist.append(str(g) + ":" + str(r) + ":" + str(normdist) + ":" + str(num))
+                #return faillist
             if r == 0:
                 if pix[x, y][1] == 1 and pix[x,y][2] == 2:
                     if not failed:

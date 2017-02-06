@@ -54,10 +54,17 @@ def bigencode(text):
         y = int(i / height)
         dist = int(math.sqrt(((oy-y)**2 + (ox-x)**2)))
         normdist = int(255 * dist / mdist)
+        normx = 255 / (x + 1)
+        normy = 255 / (y + 1)
         if i < len(text):
-            r = ord(text[i])
-            g = 255 - (normdist - ord(text[x]))
-            b = 255 - (normdist - ord(text[y]))
+            if normdist > ord(text[i]):
+                r = 255 - normdist + ord(text[i])
+                g = normdist % 128
+            else:
+                r = 255 + normdist - ord(text[i])
+                g = 127 + (normdist % 128)
+            b = 255 - (normdist - ord(text[int(x + y)/2]))
+
         else:
             r = 0
             g = 1
